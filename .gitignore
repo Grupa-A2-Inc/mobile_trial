@@ -1,0 +1,37 @@
+# Build artifacts
+bin/
+gen/
+out/
+build/
+.gradle/
+app/build/
+
+# IDE settings (IntelliJ / Android Studio)
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+*.iml
+*.ipr
+*.iws
+
+# Local configuration (IMPORTANT: conține calea către SDK-ul tău, care e diferită pe alt PC)
+local.properties
+
+# Secrets (dacă vei folosi chei de API mai târziu)
+.secrets.baseline
+secrets.properties
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Android Studio captures
+captures/
