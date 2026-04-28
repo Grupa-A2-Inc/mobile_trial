@@ -72,7 +72,7 @@ class SessionStore @Inject constructor(@ApplicationContext private val context: 
             firstName     = prefs[USER_FIRST]  ?: "",
             lastName      = prefs[USER_LAST]   ?: "",
             email         = prefs[USER_EMAIL]  ?: "",
-            role          = UserRole.values().find { it.name == prefs[USER_ROLE] } ?: UserRole.UNKNOWN,
+            role          = UserRole.entries.find { it.name == prefs[USER_ROLE] } ?: UserRole.UNKNOWN,
             status        = prefs[USER_STATUS] ?: "",
             organizationId   = prefs[USER_ORG_ID].takeIf { it?.isNotEmpty() == true },
             organizationName = prefs[USER_ORG_NAME].takeIf { it?.isNotEmpty() == true }

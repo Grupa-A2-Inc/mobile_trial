@@ -22,7 +22,7 @@ fun UserDataResponse.toDomain() = User(
     firstName = firstName,
     lastName = lastName,
     email = email,
-    role = UserRole.values().find { it.name == role } ?: UserRole.UNKNOWN,
+    role = UserRole.entries.find { it.name == role } ?: UserRole.UNKNOWN,
     status = status,
     organizationId = organizationId,
     organizationName = organizationName
