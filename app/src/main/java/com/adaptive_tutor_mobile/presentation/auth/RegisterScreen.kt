@@ -40,10 +40,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.adaptive_tutor_mobile.data.remote.dto.RegisterRequest
 import com.adaptive_tutor_mobile.domain.model.User
-
+import androidx.compose.material3.ExperimentalMaterial3Api
 private val emailRegexRegister = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")
 private val organizationTypes = listOf("SCHOOL", "UNIVERSITY", "COMPANY", "OTHER")
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
     viewModel: AuthViewModel,
