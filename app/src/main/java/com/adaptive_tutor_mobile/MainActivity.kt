@@ -36,9 +36,9 @@ class MainActivity : ComponentActivity() {
                     startDestination = if (user != null) routeForRole(user.role) else Screen.Login.route
                 }
 
-                if (startDestination != null) {
+                startDestination?.let { dest ->
                     AppNavGraph(
-                        startDestination = startDestination!!,
+                        startDestination = dest,
                         sessionStore = sessionStore
                     )
                 }
