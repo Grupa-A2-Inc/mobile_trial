@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -93,6 +94,12 @@ class SessionStore @Inject constructor(@ApplicationContext private val context: 
         _forceLogoutEvent.tryEmit(Unit)
     }
 
+    suspend fun saveThemeMode(mode: String) {
+        context.dataStore.edit { prefs -> prefs[THEME_MODE] = mode }
+    }
+
+    fun getThemeModeFlow() = context.dataStore.data.map { prefs -> prefs[THEME_MODE] ?: "system" }
+
     // ── Keys ─────────────────────────────────────────────────────────────────
 
     companion object {
@@ -105,5 +112,6 @@ class SessionStore @Inject constructor(@ApplicationContext private val context: 
         private val USER_STATUS  = stringPreferencesKey("user_status")
         private val USER_ORG_ID  = stringPreferencesKey("user_org_id")
         private val USER_ORG_NAME = stringPreferencesKey("user_org_name")
+        val THEME_MODE = stringPreferencesKey("theme_mode")
     }
 }
