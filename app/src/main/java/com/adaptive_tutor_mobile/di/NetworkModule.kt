@@ -165,4 +165,9 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCourseApi(retrofit: Retrofit): com.adaptive_tutor_mobile.data.remote.api.CourseApi =
+        retrofit.create(com.adaptive_tutor_mobile.data.remote.api.CourseApi::class.java)
 }

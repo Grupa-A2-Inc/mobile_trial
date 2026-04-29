@@ -5,15 +5,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.adaptive_tutor_mobile.di.SessionStore
 import com.adaptive_tutor_mobile.presentation.navigation.AppNavGraph
 import com.adaptive_tutor_mobile.presentation.navigation.Screen
 import com.adaptive_tutor_mobile.presentation.navigation.routeForRole
-import com.adaptive_tutor_mobile.ui.theme.Adaptive_tutor_mobileTheme
+import com.adaptive_tutor_mobile.ui.theme.AdaptiveTutorTheme
+import com.adaptive_tutor_mobile.ui.theme.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -28,7 +31,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            Adaptive_tutor_mobileTheme {
+            val themeViewModel: ThemeViewModel = hiltViewModel()
+            val themeMode by themeViewModel.themeMode.collectAsState()
+
+            AdaptiveTutorTheme(themeMode = themeMode) {
                 var startDestination by remember { mutableStateOf<String?>(null) }
 
                 LaunchedEffect(Unit) {
