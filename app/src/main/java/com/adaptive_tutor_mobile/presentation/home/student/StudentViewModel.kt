@@ -37,7 +37,7 @@ class StudentViewModel @Inject constructor(
                 if (response.isSuccessful) {
                     _coursesState.value = CoursesUiState.Success(response.body() ?: emptyList())
                 } else {
-                    _coursesState.value = CoursesUiState.Error("Eroare ${response.code()}")
+                    _coursesState.value = CoursesUiState.Error("Nu s-au putut încărca cursurile (cod ${response.code()})")
                 }
             } catch (e: Exception) {
                 _coursesState.value = CoursesUiState.Error(e.message ?: "Eroare necunoscută")

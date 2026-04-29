@@ -39,11 +39,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -381,13 +377,12 @@ fun StatusChip(text: String, color: Color) {
 
 @Composable
 fun ScoreCircle(scorePercent: Double, passed: Boolean) {
-    var animatedProgress by remember { mutableFloatStateOf(0f) }
+    val targetProgress = (scorePercent / 100.0).toFloat().coerceIn(0f, 1f)
     val animatedValue by animateFloatAsState(
-        targetValue = animatedProgress,
+        targetValue = targetProgress,
         animationSpec = tween(durationMillis = 1000),
         label = "score_anim"
     )
-    LaunchedEffect(scorePercent) { animatedProgress = (scorePercent / 100.0).toFloat().coerceIn(0f, 1f) }
 
     val color = if (passed) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error
     val trackColor = color.copy(alpha = 0.2f)
